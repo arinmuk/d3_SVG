@@ -1,6 +1,6 @@
 
 
-var svgWidth = 900;
+var svgWidth = 1250;
 var svgHeight = 440;
 
 var margin = { top: 20, right: 40, bottom: 60, left: 100 };
@@ -21,7 +21,7 @@ var chartGroup = svg.append("g")
     if (error) return console.warn(error);
   
     console.log(stateData);
-
+    const stateabbr=stateData.map(element => element.abbr)
     stateData.forEach(function(data) {
       data.poverty = +data.poverty;
       data.healthcare = +data.healthcare;
@@ -30,7 +30,7 @@ var chartGroup = svg.append("g")
    // Step 2: Create scale functions
     // ==============================
     var xLinearScale = d3.scaleLinear()
-      .domain([5, d3.max(stateData, d => d.poverty)])
+      .domain([8, d3.max(stateData, d => d.poverty)])
       .range([0, width]);
 
     var yLinearScale = d3.scaleLinear()
@@ -60,18 +60,24 @@ var chartGroup = svg.append("g")
     .attr("cx", d => xLinearScale(d.poverty))
     .attr("cy", d => yLinearScale(d.healthcare))
     .attr("r", "20")
-    .attr("fill", "blue")
+    .attr("fill", "#3bb5dd")
     .attr("opacity", ".4")
    ;
-   chartGroup.selectAll("text")
+   //8svg.append("style").text(cssText)
+
+//svg.append("style").text(cssText)
+
+//svg.append("style").text(cssText)
+   var labels = chartGroup.selectAll("text")
        .data(stateData)
        .enter()
        .append("text")
-       .text(d => d.abbr)
+       .text(d=>d.abbr)
        .attr("x", (d) => xLinearScale(d.poverty)-10)
        .attr("y", (d) => yLinearScale(d.healthcare)); 
   
-              
+      
+     stateData.forEach(element =>console.log(element.abbr))
 
     // Step 6: Initialize tool tip
     // ==============================
