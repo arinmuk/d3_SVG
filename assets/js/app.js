@@ -3,7 +3,7 @@
 var svgWidth = 1000;
 var svgHeight = 440;
 
-var margin = { top: 20, right: 40, bottom: 60, left: 40 };
+var margin = { top: 20, right: 40, bottom: 60, left: 90 };
 
 var width = svgWidth - margin.left - margin.right;
 var height = svgHeight - margin.top - margin.bottom;
@@ -17,7 +17,7 @@ var svg = d3.select("#scatter")
 var chartGroup = svg.append("g")
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  d3.csv("/assets/data/data.csv", function(error, stateData) {
+  d3.csv("assets/data/data.csv", function(error, stateData) {
     if (error) return console.warn(error);
   
     console.log(stateData);
@@ -108,18 +108,18 @@ console.log(stateab)
         toolTip.hide(data);
       });
 
-    // // Create axes labels
-    // chartGroup.append("text")
-    //   .attr("transform", "rotate(-90)")
-    //   .attr("y", 0 - margin.left + 40)
-    //   .attr("x", 0 - (height / 2))
-    //   .attr("dy", "1em")
-    //   .attr("class", "axisText")
-    //   .text("No healthcare %");
+    // Create axes labels
+    chartGroup.append("text")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 0 - margin.left + 40)
+      .attr("x", 0 - (height / 2))
+      .attr("dy", "1em")
+      .attr("class", "axisText")
+      .text("No healthcare %");
 
-    // chartGroup.append("text")
-    //   .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
-    //   .attr("class", "axisText")
-    //   .text("In Poverty %");
+    chartGroup.append("text")
+      .attr("transform", `translate(${width / 2}, ${height + margin.top + 30})`)
+      .attr("class", "axisText")
+      .text("In Poverty %");
   })
 
