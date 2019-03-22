@@ -147,13 +147,26 @@ d3.csv("/assets/data/data.csv", function(error, stateData) {
     .attr("value", "poverty") // value to grab for event listener
     .classed("active", true)
     .text("Poverty level %");
+    
+    var ageLabel = labelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 20+12)
+    .attr("value", "Age") // value to grab for event listener
+    .classed("active", true)
+    .text("Age %");
 
-  var healthcareLabel = labelsGroup.append("text")
+    var healthcareLabel = labelsGroup.append("text")
     .attr("x", 0)
     .attr("y", 40)
     .attr("value", "healthcare") // value to grab for event listener
     .classed("inactive", true)
     .text("% healthcare");
+    var smokeLabel = labelsGroup.append("text")
+    .attr("x", 0)
+    .attr("y", 40)
+    .attr("value", "smokes") // value to grab for event listener
+    .classed("inactive", true)
+    .text("% Smoker");
 
   // append y axis
   chartGroup.append("text")
@@ -163,6 +176,9 @@ d3.csv("/assets/data/data.csv", function(error, stateData) {
     .attr("dy", "1em")
     .classed("axis-text", true)
     .text("smokers");
+
+ 
+
 
   // updateToolTip function above csv import
   var circlesGroup = updateToolTip(chosenXAxis, circlesGroup);
@@ -202,10 +218,10 @@ d3.csv("/assets/data/data.csv", function(error, stateData) {
             .classed("inactive", true);
         }
         else {
-          healthcareLabel
+          smokeLabel
             .classed("active", false)
             .classed("inactive", true);
-            povertyLabel
+            ageLabel
             .classed("active", true)
             .classed("inactive", false);
         }
